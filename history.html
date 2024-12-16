@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>年限选择页面</title>
+<!-- 引入Google Fonts的Noto Serif SC字体 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        /* 使用Noto Serif SC字体，并添加备用字体 */
+        font-family: 'Noto Serif SC', '宋体', 'SimSun', 'NSimSun', '新宋体', 'Microsoft YaHei', serif;
+        height: 100%;
+    }
+
+    /* 整个容器 */
+    .container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    /* 背景图和半透明蒙层 */
+    .container::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url("图片/2024CCE报道.jpg") center/cover no-repeat;
+        filter: brightness(0.5);
+        z-index: -2;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.35);
+        z-index: -1;
+    }
+
+    /* 年份区块样式 */
+    .year-block {
+        position: relative;
+        width: 20%;
+        min-width: 200px;
+        height: 200px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .year-block a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 3rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        transition: color 0.3s ease;
+        text-align: center;
+    }
+
+    /* 悬停效果 */
+    .year-block:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+    .year-block:hover a {
+        color: #ffeb3b;
+    }
+
+    @media screen and (max-width: 768px) {
+        .year-block {
+            width: 60%;
+            height: 150px;
+            margin: 20px 0;
+        }
+
+        .year-block a {
+            font-size: 2rem;
+        }
+
+        .container {
+            flex-direction: column;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="overlay"></div>
+        <div class="year-block">
+            <a href="history_2024.html">龙年🐲<br>2024</a>
+        </div>
+        <div class="year-block">
+            <a href="history_2023.html">兔年🐰<br>2023</a>
+        </div>
+        <div class="year-block">
+            <a href="history_2022.html">虎年🐯<br>2022</a>
+        </div>
+    </div>
+</body>
+</html>

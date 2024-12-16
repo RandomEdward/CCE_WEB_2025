@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website Design with Enhanced Chinese New Year Hover Effects</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* 全局样式重置，移除所有元素的默认外边距和内边距，并设置盒模型为边框盒 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 定义CSS变量以便于颜色和字体管理 */
+    :root {
+      --primary-font: 'Roboto', sans-serif;
+      --secondary-font: 'Playfair Display', serif;
+      --primary-color: #ffffff;
+      --secondary-color: #f8f8f8;
+      --accent-color: #ff9800;
+      --background-color: #1e1e1e;
+      --section-padding: 80px 20px;
+      --max-width: 1200px;
+    }
+
+    body {
+      font-family: var(--primary-font);
+      background: var(--background-color);
+      color: var(--primary-color);
+      position: relative;
+      min-height: 100vh;
+      padding-bottom: 150px;
+      line-height: 1.6;
+    }
+
+    /* 主内容区域的样式 */
+    .main-content {
+      /* 删除固定高度，让内容决定高度 */
+    }
+
+    /* 头部样式，使用flex布局对齐内容，添加半透明背景 */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 60px;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 2;
+      transition: background 0.3s ease;
+      font-family: var(--primary-font);
+    }
+
+    body.scrolled .header {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .logo img {
+      max-height: 40px;
+      transition: max-height 0.3s ease;
+    }
+
+    .menu {
+      display: flex;
+      gap: 40px;
+      position: relative;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      position: relative;
+      padding: 5px 0;
+      transition: color 0.3s ease;
+    }
+
+    .menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: width 0.3s ease;
+    }
+
+    .menu a:hover::after,
+    .menu a.active::after {
+      width: 100%;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: #ddd;
+    }
+
+    .menu a.no-underline::after {
+      display: none;
+    }
+
+    .lang-switch {
+      font-size: 14px;
+      padding: 7px 14px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid white;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .lang-switch:hover {
+      background: rgba(255, 255, 255, 0.4);
+      color: #000;
+    }
+
+    .menu-item-has-children {
+      position: relative;
+    }
+
+    .submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px 0;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      min-width: 150px;
+      z-index: 1000;
+    }
+
+    .menu-item-has-children:hover .submenu {
+      display: flex;
+    }
+
+    .submenu a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 20px;
+      font-size: 16px;
+      transition: background 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .submenu a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ddd;
+    }
+
+    .video-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .video-loop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+      z-index: 1;
+    }
+
+    .side-image {
+      position: fixed;
+      left: 10px;
+      bottom: 5px;
+      width: 600px;
+      height: auto;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--section-padding);
+      background: linear-gradient(135deg, #1e1e1e, #100d0d);
+      position: relative;
+      color: var(--primary-color);
+    }
+
+    .content-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--section-padding);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .section h1 {
+      font-family: var(--secondary-font);
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: var(--accent-color);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section p {
+      max-width: 800px;
+      font-size: 1.1rem;
+      color: var(--secondary-color);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .category-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .category {
+      position: relative;
+      flex: 1 1 calc(33.333% - 13.333px);
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
+      aspect-ratio: 1 / 1;
+      max-width: calc(33.333% - 13.333px);
+    }
+
+    .category img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .category::after {
+      content: attr(data-title);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 10px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      font-size: 20px;
+      text-align: center;
+      transition: background 0.5s ease, color 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+      z-index: 3;
+      transform: translateY(100%);
+      opacity: 0;
+    }
+
+    .category:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .category:hover img {
+      transform: scale(1.2);
+      filter: brightness(1.2);
+    }
+
+    .category:hover::after {
+      background: rgba(255, 255, 255, 0.8);
+      color: #000;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .category-history::before, .category-calendar::before {
+      content: '';
+      position: absolute;
+      /* Specific styles per category */
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .header {
+        padding: 10px 20px;
+      }
+
+      .menu {
+        gap: 20px;
+      }
+
+      .menu a {
+        font-size: 16px;
+      }
+
+      .lang-switch {
+        padding: 5px 10px;
+        font-size: 12px;
+      }
+
+      .side-image {
+        left: 20px;
+        bottom: 20px;
+        width: 300px;
+      }
+
+      .submenu {
+        min-width: 120px;
+      }
+
+      .submenu a {
+        padding: 6px 16px;
+        font-size: 14px;
+      }
+
+      .category-container {
+        flex-direction: column;
+        gap: 20px;
+        height: auto;
+      }
+
+      .category {
+        min-width: 100%;
+        height: auto;
+        flex: none;
+        max-width: 100%;
+      }
+
+      .category::after {
+        font-size: 18px;
+      }
+
+      .section h1 {
+        font-size: 2rem;
+      }
+
+      .section p {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section {
+        padding: 40px 10px;
+      }
+
+      .section h1 {
+        font-size: 1.8rem;
+      }
+
+      .section p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="图片/logo.png" alt="LOGO">
+    </div>
+    <nav class="menu">
+      <div class="menu-item-has-children">
+        <a href="#history" class="active no-underline">历年CCE</a>
+        <ul class="submenu">
+          <li><a href="history_2024.html">2024</a></li>
+          <li><a href="history_2023.html">2023</a></li>
+          <li><a href="history_2022.html">2022</a></li>
+        </ul>
+      </div>
+      <a href="merch.html">商品</a>
+      <a href="calendar.html">日程</a>
+    </nav>
+    <a href="_test_.html">
+      <button class="lang-switch">English</button>
+    </a>
+  </header>
+
+  <section class="video-section">
+    <video class="video-loop" autoplay loop muted>
+      <source src="图片/视频.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
+  </section>
+
+  <main class="main-content">
+    <!-- Section 1 -->
+    <section class="section" id="section1">
+      <div class="content-container">
+        <h1>CCE是什么</h1>
+        <p>
+          中国文化之夜 (CCE) 是一年一度庆祝中国文化和春节的晚会，由学生自主策划、导演和表演。这是 UWCCSC（常熟世界联合学院）一项拥有十年历史和传承的传统。
+CCE 不仅是学生的活动，我们欢迎所有人共来参与。去年，CCE的全球直播吸引了超过 1.7 万名观众，今年CCE的热度更加可期。
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="section" id="section2">
+      <div class="content-container">
+        <h1>CCE团队介绍</h1>
+        <p>
+          CCE由一支富有才华的核心团队组织。他们精心策划并计划这场非凡的盛会。
+我们的导演团队是CCE。他们与知行社（学生主导的各种传统中国表演艺术社团）紧密合作。无论是舞龙，中国武术，或是中国传统音乐，这些俱乐部为CCE注入了浓厚的文化底蕴。
+我们携手创造了一场引人入胜的盛典，用各种表演承载中国文化，呈现出它的独特光辉。
+
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="section" id="section3">
+      <div class="content-container">
+        <h1>CCE与你</h1>
+        <p>
+          我们诚邀所有学生，家长和老师一同前来 UWCCSC 校园，共同线下参与中国新年的庆祝活动。
+此外，我们还将在多个平台进行直播，敬请期待。
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="section" id="section4">
+      <div class="category-container">
+        <a href="history.html" class="category category-history" data-title="History">
+          <img src="图片/history封面.jpg" alt="History">
+        </a>
+        <a href="merch.html" class="category category-merch" data-title="Merch">
+          <img src="图片/product5.jpg" alt="Merch">
+        </a>
+        <a href="calendar.html" class="category category-calendar" data-title="Calendar">
+          <img src="图片/calendar封面.jpg" alt="Calendar">
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <img src="图片/红色CCE.png" alt="Side Image" class="side-image">
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const scrollY = window.scrollY;
+      const body = document.body;
+
+      if (scrollY > 50) {
+        body.classList.add('scrolled');
+      } else {
+        body.classList.remove('scrolled');
+      }
+
+      const sideImage = document.querySelector('.side-image');
+      const maxScroll = 500;
+      const scrollRatio = Math.min(scrollY / maxScroll, 1);
+      const newOpacity = 1 - scrollRatio;
+      sideImage.style.opacity = newOpacity;
+    });
+  </script>
+</body>
+</html>

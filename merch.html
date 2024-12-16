@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Merch Page</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      /* 设置背景图片 */
+      background: url('图片/WechatIMG288.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative; /* 为了定位二维码容器 */
+    }
+
+    .container {
+      /* 使容器覆盖整个视口 */
+      width: 100%;
+      min-height: 100%;
+      padding: 50px 20px;
+      background: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+      box-sizing: border-box;
+      /* 可选：添加内阴影或外阴影以增强视觉效果 */
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333; /* 更改为深色以在白色背景上更清晰 */
+      margin-bottom: 50px;
+      font-size: 48px;
+      /* 移除文字阴影，因为背景已变为白色 */
+      /* text-shadow: 2px 2px 4px rgba(0,0,0,0.3); */
+    }
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 300px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .product-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .product-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .product-price {
+      font-size: 20px;
+      color: #e74c3c;
+      margin-bottom: 15px;
+    }
+
+    .product-description {
+      font-size: 16px;
+      color: #777;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* 响应式设计优化 */
+    @media (max-width: 768px) {
+      .product-card {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      /* 隐藏二维码在小屏幕设备上 */
+      .qr-code-container {
+        display: none;
+      }
+    }
+
+    /* 新增二维码容器样式 */
+    .qr-code-container {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .qr-code-container img {
+      width: 150px;
+      height: 150px;
+    }
+
+    .qr-code-container p {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Products</h1>
+    <div class="product-grid">
+      <!-- 商品卡片 -->
+      <a href="product1.html">
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('图片/product1.jpg');"></div>
+          <div class="product-info">
+            <div class="product-title">CCE 拉链Hoodie</div>
+            <div class="product-price">¥128.00</div>
+            <div class="product-description">万能便捷保暖的拉链帽兜衫，红/黑</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="product2.html">
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('图片/product2.jpg');"></div>
+          <div class="product-info">
+            <div class="product-title">CCE 圆领Hoodie</div>
+            <div class="product-price">¥108.00</div>
+            <div class="product-description">圆领加绒的休闲装，红/黑</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="product3.html">
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('图片/product3.jpg');"></div>
+          <div class="product-info">
+            <div class="product-title">CCE 红包</div>
+            <div class="product-price">¥4.50</div>
+            <div class="product-description">青色与橙色的帅气红包！</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="product4.html">
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('图片/product4.jpg');"></div>
+          <div class="product-info">
+            <div class="product-title">CCE 盲盒</div>
+            <div class="product-price">¥25.00</div>
+            <div class="product-description">一个关于CCE的惊喜礼盒</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="product5.html">
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('图片/product5.jpg');"></div>
+          <div class="product-info">
+            <div class="product-title">CCE 明信片</div>
+            <div class="product-price">¥3.00</div>
+            <div class="product-description">充满春节氛围感的“回忆载体”</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="product6.html">
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('图片/product6.jpg');"></div>
+          <div class="product-info">
+            <div class="product-title">CCE 围巾</div>
+            <div class="product-price">¥88.00</div>
+            <div class="product-description">Merch里颜值最高的产品</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="product7.html">
+        <div class="product-card">
+          <div class="product-image" style="background-image: url('图片/product7.jpg');"></div>
+          <div class="product-info">
+            <div class="product-title">CCE 飞盘</div>
+            <div class="product-price">¥66.00</div>
+            <div class="product-description">CSC最受欢迎的运动用品</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 可以添加更多商品卡片 -->
+    </div>
+  </div>
+
+  <!-- 二维码容器 -->
+  <div class="qr-code-container">
+    <img src="图片/Merch二维码.jpg" alt="扫描二维码">
+    <p>你也可以直接扫码进入购买form</p>
+  </div>
+</body>
+</html>

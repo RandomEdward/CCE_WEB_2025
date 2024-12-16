@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>商品二 - 详细信息</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 0 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .product-detail {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .product-image {
+      flex: 1 1 400px;
+      background-image: url('图片/product2.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 500px;
+    }
+
+    .product-info {
+      flex: 1 1 500px;
+      padding: 40px;
+    }
+
+    .product-title {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .product-price {
+      font-size: 28px;
+      color: #e74c3c;
+      margin-bottom: 10px;
+    }
+
+    .product-description {
+      font-size: 18px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .buy-button {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 15px 30px;
+      background-color: #e74c3c;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .buy-button:hover {
+      background-color: #c0392b;
+    }
+
+    /* 响应式设计优化 */
+    @media (max-width: 768px) {
+      .product-detail {
+        flex-direction: column;
+      }
+
+      .product-image, .product-info {
+        flex: 1 1 100%;
+      }
+
+      .container {
+        margin: 20px auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="product-detail">
+      <div class="product-image" style="background-image: url('图片/product2.jpg');"></div>
+      <div class="product-info">
+        <div class="product-title">CCE 圆领Hoodie</div>
+        <div class="product-price">¥108.00 一件</div>
+        <div class="product-price">¥208.00 两件</div>
+        <div class="product-description">
+          <p>真的有设计能在休闲服装届击败圆领吗？</p>
+          <p>最chill的选择，配色可选红/黑</p>
+        </div>
+        <!-- 修改后的按钮，链接到购买页面 -->
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=l7soQC2lA0mJEiGTCgtJa4uyxXji591IsiCcSMtou0hUNlgwSEgxOTBRWDdOTDA5OUhZOEhUSTZWTy4u" class="buy-button">立即购买</a>
+        <!-- 如果希望在新标签页打开链接，可以添加 target="_blank" -->
+        <!-- <a href="purchase.html" class="buy-button" target="_blank">立即购买</a> -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>
